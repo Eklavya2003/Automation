@@ -1,9 +1,11 @@
+const { Keyboard } = require("puppeteer");
 const puppeteer = require("puppeteer");
 const loginLink =
   "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin";
 
 const email = "22052381@kiit.ac.in";
 const password = "Sujal@123";
+const jobName = "delloite";
 
 let browserOpen = puppeteer.launch({
   headless: false,
@@ -41,4 +43,31 @@ browserOpen
       { delay: 50 }
     );
     return loginButtonClicked;
+  })
+  .then(function () {
+    let SearchClicked = waitAndClick("input[placeholder='Search']", page);
+    return SearchClicked;
+  })
+  .then(function () {
+    let jobNames = page.type("input[placeholder='Search']", jobName);
+    return jobNames;
+  })
+  .then(function () {
+    return page.keyboard.press("Enter");
   });
+
+function waitAndClick(selector, cPage) {
+  return new Promise(function (resolve, reject) {
+    cPage
+      .waitForSelector(selector)
+      .then(function () {
+        return cPage.click(selector);
+      })
+      .then(function () {
+        resolve();
+      })
+      .catch(function (err) {
+        reject(err);
+      });
+  });
+}

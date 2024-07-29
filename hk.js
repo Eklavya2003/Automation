@@ -54,6 +54,14 @@ browserOpen
   })
   .then(function () {
     return page.keyboard.press("Enter");
+  })
+  .then(function () {
+    let ClickedonJob = waitAndClick(
+      `.reusable-search__entity-cluster--quick-filter-action-container a[href="https://www.linkedin.com/jobs/search?keywords=delloite&f_AL=true"]`,
+      page,
+      { delay: 50 }
+    );
+    return ClickedonJob;
   });
 
 function waitAndClick(selector, cPage) {

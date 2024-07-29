@@ -34,4 +34,11 @@ browserOpen
       delay: 50,
     });
     return passwordIsEntered;
+  })
+  .then(function () {
+    let loginButtonClicked = page.click(
+      'button[class="btn__primary--large from__button--floating"]',
+      { delay: 50 }
+    );
+    return loginButtonClicked;
   });

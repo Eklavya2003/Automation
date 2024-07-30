@@ -3,8 +3,8 @@ const puppeteer = require("puppeteer");
 const loginLink =
   "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin";
 
-const email = "22052381@kiit.ac.in";
-const password = "Sujal@123";
+const email = "__";
+const password = "__";
 const jobName = "delloite";
 
 let browserOpen = puppeteer.launch({
@@ -62,6 +62,14 @@ browserOpen
       { delay: 50 }
     );
     return ClickedonJob;
+  })
+  .then(function () {
+    let ClickedonJobApply = waitAndClick(
+      `#ember641 use[href="#linkedin-bug-xxsmall"]`,
+      page,
+      { delay: 50 }
+    );
+    return ClickedonJobApply;
   });
 
 function waitAndClick(selector, cPage) {
